@@ -10,7 +10,7 @@ var appLocalsRenderStageStories = function(){
 
     var getCompiledTemplate = function(){
         if(typeof(_compiledTemplate) === 'undefined'){
-            _compiledTemplate = jade.compile(fs.readFileSync(dirname + '/views/partials/userStory.jade'));
+            _compiledTemplate = jade.compile(fs.readFileSync(dirname + '/app/views/partials/userStory.jade'));
         }
         return _compiledTemplate;
     }

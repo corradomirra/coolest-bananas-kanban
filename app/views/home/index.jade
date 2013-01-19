@@ -28,10 +28,9 @@ block content
             .stage-title
                 h3 New
             .stage-stories
-                each userStory in userStories
-                    .draggable
-                        p= userStory._id
+                !=renderStageStories('new', userStories);
         #in-progress.stage
             .stage-title
                 h3 In Progress
             .stage-stories
+                !=renderStageStories('in-progress', userStories);
