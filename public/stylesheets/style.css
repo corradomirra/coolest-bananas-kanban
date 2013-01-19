@@ -1,0 +1,26 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+
+
+
+div.stage{
+    width:20%;
+    float:left;
+    border:5px solid #e0e0e0;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    text-align: center;
+}
+
+div.stage-hover{
+    border:5px solid yellow;
+}
+
+div.draggable{
+    cursor:pointer;
+}

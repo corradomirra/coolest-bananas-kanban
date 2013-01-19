@@ -1,0 +1,37 @@
+extends ../layout
+
+block scripts
+    script(src="/javascripts/jade-runtime.js", type="text/javascript")
+    script(src="/javascripts/kanban.home.index.js", type="text/javascript")
+    != assets.tag('/partials.js')
+
+    script(type='text/javascript')
+
+        var io = io.connect();
+
+        $(function(){
+            $('#doit').click(function(){
+                io.emit('createUserStory', {});
+            });
+        });
+
+        io.on('userStoryCreated', function(userStory){
+            $('#new').append(Partials['userStory'](userStory));
+        });
+
+
+block content
+    button(id='doit') Yeah
+
+    #kanban
+        #new.stage
+            .stage-title
+                h3 New
+            .stage-stories
+                each userStory in userStories
+                    .draggable
+                        p= userStory._id
+        #in-progress.stage
+            .stage-title
+                h3 In Progress
+            .stage-stories

@@ -1,0 +1,3 @@
+{
+    "connectionPath" : "mongodb://localhost/kanban_development"
+}
