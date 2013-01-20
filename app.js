@@ -12,16 +12,8 @@ var path = require('path');
 
 var homeController = require('./app/controllers/homeController');
 var userStoriesController = require('./app/controllers/userStoriesController');
-var partialsController = require('./app/controllers/partialsController');
 
-var rack = require('asset-rack');
-var assets = new rack.AssetRack([
-    new rack.JadeAsset({
-        url: '/partials.js',
-        dirname: __dirname + '/app/views/partials',
-        clientVariable: 'Partials'
-    })
-]);
+var assets = require('./assets').init();
 
 assets.on('complete', function(){
     var app = express().http().io();
@@ -44,11 +36,6 @@ assets.on('complete', function(){
     });
 
     app.get('/', homeController.index);
-    app.get('/partials/user-story', partialsController.renderUserStory);
-
-    app.io.route('click', function(req){
-        console.log('yes I did it!');
-    });
 
     app.io.route('createUserStory', userStoriesController.create);
     app.io.route('updateUserStoryStage', userStoriesController.updateStage);
