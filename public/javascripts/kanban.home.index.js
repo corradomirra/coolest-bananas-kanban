@@ -9,15 +9,16 @@ $(function(){
     $stages.each(function(i){
         var $this = $(this);
         var left = $this.offset().left;
-        if(i === $stages.length -1)
-            console.log('ya');
+//        if(i === $stages.length -1)
+//            console.log('ya');
 
         var threshold = left + $this.width();
 
         stageLocations.push({
             left: left,
             threshold: threshold,
-            selector: '#' + $this.attr('id')
+            selector: '#' + $this.attr('id'),
+            id: $this.attr('id')
         });
     });
 
@@ -26,7 +27,7 @@ $(function(){
         var position = $this.offset();
         var currentPosition = {left: position.left + ($this.width() / 2)};
         var stageLocation = stageLocations.filter(function(location){
-            return currentPosition.left >= location.left && currentPosition.left < location.threshold;
+            return currentPosition.left >= location.left && currentPosition.left <= location.threshold;
         });
         return stageLocation[0];
     }
@@ -51,6 +52,7 @@ $(function(){
 
                 if(typeof(nextHoverStage) !== 'undefined')
                     $(nextHoverStage.selector).addClass('stage-hover');
+
                 hoverStage = nextHoverStage;
             }
 
@@ -60,6 +62,11 @@ $(function(){
             if(typeof(hoverStage) !== 'undefined' && hoverStage !== null){
                 $(hoverStage.selector + ' > .stage-stories').append(this);
                 $(hoverStage.selector).removeClass('stage-hover');
+            }
+
+            if(startStage.id !== hoverStage.id){
+                var data = { id:$(this).attr('id'), stage:hoverStage.id }
+                $(document).trigger('coolestBananas.kanban.home.index.userStoryChangedStage', data);
             }
         }
     });

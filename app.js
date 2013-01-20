@@ -51,6 +51,7 @@ assets.on('complete', function(){
     });
 
     app.io.route('createUserStory', userStoriesController.create);
+    app.io.route('updateUserStoryStage', userStoriesController.updateStage);
 
     require('./appLocals.renderStageStories').register(app);
 

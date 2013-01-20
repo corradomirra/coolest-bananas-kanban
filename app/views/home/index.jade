@@ -19,11 +19,20 @@ block scripts
             $('#new').append(Partials['userStory'](userStory));
         });
 
+        io.on('userStoryStageUpdated', function(userStory){
+            $('#' + userStory._id).fadeOut(500, function(){
+                $('#' + userStory._id).appendTo('#' + userStory.stage);
+                $('#' + userStory._id).fadeIn(500);
+            });
+        });
+
+        $(document).bind('coolestBananas.kanban.home.index.userStoryChangedStage', function(e, data){
+            io.emit('updateUserStoryStage', data);
+        });
+
 
 block content
-    button(id='doit') Yeah
-
-    #kanban
+    #kanban-board
         #new.stage
             .stage-title
                 h3 New
@@ -34,3 +43,8 @@ block content
                 h3 In Progress
             .stage-stories
                 !=renderStageStories('in-progress', userStories);
+        #complete.stage
+            .stage-title
+                h3 Complete
+            .stage-stories
+                !=renderStageStories('complete', userStories);

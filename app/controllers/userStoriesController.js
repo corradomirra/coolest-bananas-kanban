@@ -7,3 +7,9 @@ exports.create = function(req, res){
         req.io.emit('userStoryCreated', userStory);
     });
 }
+
+exports.updateStage = function(req, res){
+    userStoryService.updateStage(req.data.id, req.data.stage, function(err, userStory){
+        req.io.broadcast('userStoryStageUpdated', userStory);
+    });
+}
