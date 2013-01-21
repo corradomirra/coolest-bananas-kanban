@@ -9,9 +9,15 @@ html
 
         script(src='/javascripts/underscore.js')
         script(src='/socket.io/socket.io.js')
+        script(src='/javascripts/jade-runtime.js')
+        script(src='/javascripts/jquery.simplemodal-1.4.3.js')
+        != assets.tag('/partials.js')
 
-        block scripts
-
+        script(src='/javascripts/coolestBananas.namespace.js')
+        script(src='/javascripts/coolestBananas.kanban.socket.js')
+        script(src='/javascripts/coolestBananas.kanban.dragging.js')
+        script(src='/javascripts/coolestBananas.kanban.creator.js')
+        script(src='/javascripts/coolestBananas.kanban.js')
 
     body
         block content

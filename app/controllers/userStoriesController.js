@@ -1,15 +1,17 @@
-var userStoryService = require('../applicationServices/userStoryService');
-var jade = require('jade');
-var fs = require('fs');
+module.exports = function(app){
 
-exports.create = function(req, res){
-    userStoryService.create({ stage: 'new' }, function(err, userStory){
-        req.io.emit('userStoryCreated', userStory);
-    });
-}
+    var userStoryService = require('../applicationServices/userStoryService');
 
-exports.updateStage = function(req, res){
-    userStoryService.updateStage(req.data.id, req.data.stage, function(err, userStory){
-        req.io.broadcast('userStoryStageUpdated', userStory);
+    app.io.route('createUserStory', function(req){
+        userStoryService.create({ stage: 'new' }, function(err, userStory){
+            app.io.broadcast('userStoryCreated', userStory);
+        });
     });
+
+    app.io.route('updateUserStoryStage', function(req){
+        userStoryService.updateStage(req.data.id, req.data.stage, function(err, userStory){
+            req.io.broadcast('userStoryStageUpdated', userStory);
+        });
+    });
+
 }

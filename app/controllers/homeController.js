@@ -1,7 +1,11 @@
-var userStoryService = require('../applicationServices/userStoryService');
+module.exports = function(app){
 
-exports.index = function(req, res){
-    userStoryService.findAll(function(err, userStories){
-        res.render('home/index', {userStories:userStories});
+    var userStoryService = require('../applicationServices/userStoryService');
+
+    app.get('/', function(req, res){
+        userStoryService.findAll(function(err, userStories){
+            res.render('home/index', {userStories:userStories});
+        });
     });
+
 }

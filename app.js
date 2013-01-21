@@ -10,9 +10,6 @@ var express = require('express.io');
 var http = require('http');
 var path = require('path');
 
-var homeController = require('./app/controllers/homeController');
-var userStoriesController = require('./app/controllers/userStoriesController');
-
 var assets = require('./assets').init();
 
 assets.on('complete', function(){
@@ -35,10 +32,9 @@ assets.on('complete', function(){
         app.use(express.errorHandler());
     });
 
-    app.get('/', homeController.index);
 
-    app.io.route('createUserStory', userStoriesController.create);
-    app.io.route('updateUserStoryStage', userStoriesController.updateStage);
+    require('./app/controllers/homeController')(app);
+    require('./app/controllers/userStoriesController')(app);
 
     require('./appLocals.renderStageStories').register(app);
 
