@@ -28,6 +28,8 @@ coolestBananas.kanban.creator = function(){
         if(charCode === 120) return 'x';
         if(charCode === 121) return 'y';
         if(charCode === 122) return 'z';
+
+        return '';
     }
 
     return {
@@ -46,7 +48,8 @@ coolestBananas.kanban.creator = function(){
                     onShow: function(dialog){
                         $('#create').click(function(e){
                             e.preventDefault();
-                            $(document).trigger('coolestBananas.kanban.creator.createButtonClicked', $('#user-story').val());
+                            $(document).trigger('coolestBananas.kanban.creator.createButtonClicked', $('#text').val());
+                            $.modal.close();
                         });
                     }
                 }
@@ -54,7 +57,7 @@ coolestBananas.kanban.creator = function(){
 
                 $(Partials['creator']()).modal(options);
 
-                $('#user-story').val($('#user-story').val() + getCharacter(e.charCode))
+                $('#text').val($('#text').val() + getCharacter(e.charCode))
             });
         }
     }

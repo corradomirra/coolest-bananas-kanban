@@ -3,7 +3,7 @@ module.exports = function(app){
     var userStoryService = require('../applicationServices/userStoryService');
 
     app.io.route('createUserStory', function(req){
-        userStoryService.create({ stage: 'new' }, function(err, userStory){
+        userStoryService.create({ stage: 'new', text: req.data }, function(err, userStory){
             app.io.broadcast('userStoryCreated', userStory);
         });
     });

@@ -3,7 +3,6 @@ coolestBananas.kanban.socket = function(){
     return{
         init:function(io){
 
-
             $(function(){
                 $('#doit').click(function(){
                     io.emit('createUserStory', {});
@@ -23,10 +22,11 @@ coolestBananas.kanban.socket = function(){
 
             $(document).bind('coolestBananas.kanban.dragging.userStoryChangedStage', function(e, data){
                 io.emit('updateUserStoryStage', data);
+                coolestBananas.kanban.dragging.init();
             });
 
             $(document).bind('coolestBananas.kanban.creator.createButtonClicked', function(e, data){
-                io.emit('createUserStory', { userStory:data });
+                io.emit('createUserStory', data);
             });
 
         }

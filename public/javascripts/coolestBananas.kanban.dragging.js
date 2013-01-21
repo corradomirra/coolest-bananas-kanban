@@ -3,18 +3,11 @@ coolestBananas.kanban.dragging = function(){
     return {
         init: function(){
 
-            var isLastStage = function(i, $stages){
-                return i === $stages.length -1;
-            }
-
             var stageLocations = [];
             var $stages = $('.stage');
             $stages.each(function(i){
                 var $this = $(this);
                 var left = $this.offset().left;
-//        if(i === $stages.length -1)
-//            console.log('ya');
-
                 var threshold = left + $this.width();
 
                 stageLocations.push({
@@ -61,9 +54,9 @@ coolestBananas.kanban.dragging = function(){
 
                 },
                 stop: function(){
-                    $(this).removeAttr('style');
+                    $(this).attr('style', 'position:relative;');
                     if(typeof(hoverStage) !== 'undefined' && hoverStage !== null){
-                        $(hoverStage.selector + ' > .stage-stories').append(this);
+                        $(hoverStage.selector).append(this);
                         $(hoverStage.selector).removeClass('stage-hover');
                     }
 

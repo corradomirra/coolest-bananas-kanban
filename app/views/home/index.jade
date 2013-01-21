@@ -1,19 +1,13 @@
 extends ../layout
 
 block content
-    #kanban-board
-        #new.stage
-            .stage-title
-                h3 New
-            .stage-stories
-                !=renderStageStories('new', userStories);
-        #in-progress.stage
-            .stage-title
-                h3 In Progress
-            .stage-stories
-                !=renderStageStories('in-progress', userStories);
-        #complete.stage
-            .stage-title
-                h3 Complete
-            .stage-stories
-                !=renderStageStories('complete', userStories);
+    section#kanban-board
+        section.stage#new
+            h3 New
+            !=renderStageStories('new', userStories);
+        section.stage#in-progress
+            h3 In Progress
+            !=renderStageStories('in-progress', userStories);
+        section.stage#complete
+            h3 Complete
+            !=renderStageStories('complete', userStories);
