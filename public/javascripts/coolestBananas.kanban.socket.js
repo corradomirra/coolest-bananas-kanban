@@ -11,6 +11,7 @@ coolestBananas.kanban.socket = function(){
 
             io.on('userStoryCreated', function(userStory){
                 $(Partials['userStory'](userStory)).hide().appendTo('#new').fadeIn(500);
+                coolestBananas.kanban.dragging.init();
             });
 
             io.on('userStoryStageUpdated', function(userStory){
