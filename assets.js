@@ -1,4 +1,4 @@
-var Assets = function(){
+module.exports = function(){
 
     var rack = require('asset-rack');
 
@@ -15,5 +15,3 @@ var Assets = function(){
     }
 
 }();
-
-module.exports = Assets;

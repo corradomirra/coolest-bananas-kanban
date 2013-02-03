@@ -1,13 +1,14 @@
-var mongoose = require('mongoose');
+module.exports = function(){
 
-var UserStorySchema = new mongoose.Schema({
-      stage : { type: String, require: true }
-    , text : { type: String, require:true }
-});
+    var _mongoose = require('mongoose');
 
-var UserStory = mongoose.model('UserStory', UserStorySchema);
+    var UserStorySchema = new _mongoose.Schema({
+          stage : { type: String, require: true }
+        , text : { type: String, require: true }
+    });
 
-module.exports = {
-      Model : UserStory
-    , Schema : UserStorySchema
-}
+    var UserStory = _mongoose.model('UserStory', UserStorySchema);
+
+    return { Model: UserStory, Schema: UserStorySchema }
+
+}();

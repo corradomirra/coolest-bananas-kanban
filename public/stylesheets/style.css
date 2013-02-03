@@ -1,27 +1,33 @@
-html,body { height: 100%; margin: 0px; padding: 0px; }
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 a {
   color: #00b7ff;
 }
 
-#creator{
+#creator {
     background-color: #fff;
     text-align: center;
     padding:20px;
 }
 
-#text{
+#text {
     width:300px;
     height:240px;
 }
 
-#kanban-board{
+#kanban-board {
     height:100%;
 }
 
-.stage{
+.stage {
     width:33%;
     float:left;
     text-align: center;
@@ -29,26 +35,26 @@ a {
     height:100%;
 }
 
-.stage-hover{
+.stage-hover {
     background-color: #fafad2 !important;
 }
 
-#new{
+#new {
     background-color: #cd5c5c;
 }
 
-#in-progress{
+#in-progress {
     background-color: #ff8c00;
 }
 
-#complete{
+#complete {
     background-color: #9acd32;
 }
 
-.draggable{
+.draggable {
     cursor:pointer;
 }
 
-.bigger-text{
+.bigger-text {
     font-size:24px;
 }

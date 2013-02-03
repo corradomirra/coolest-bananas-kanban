@@ -1,9 +1,9 @@
 module.exports = function(app){
 
-    var userStoryService = require('../applicationServices/userStoryService');
+    var _userStoryService = require('../applicationServices/userStoryService');
 
     app.get('/', function(req, res){
-        userStoryService.findAll(function(err, userStories){
+        _userStoryService.findAll(function(err, userStories){
             res.render('home/index', {userStories:userStories});
         });
     });

@@ -1,25 +1,32 @@
-var userStoryModel = require('../models/userStory').Model;
-var mongoose = require('mongoose');
-var ObjectId = mongoose.Types.ObjectId;
+module.exports = function(){
 
-exports.create = function(params, next){
-    var userStory = new userStoryModel(params);
-    userStory.save(function(err){
-        next(err, userStory);
-    });
-}
+    var _userStoryModel = require('../models/userStory').Model;
+    var _mongoose = require('mongoose');
+    var _objectId = _mongoose.Types.ObjectId;
 
-exports.findAll = function(next){
-    userStoryModel.find(function(err, userStories){
-        next(err, userStories);
-    });
-}
+    return {
 
-exports.updateStage = function(id, stage, next){
-    userStoryModel.findOne({_id:ObjectId(id)}, function(err, userStory){
-        userStory.stage = stage;
-        userStory.save(function(err){
-            next(err, userStory);
-        });
-    });
-}
+        create: function(params, next){
+            var userStory = new _userStoryModel(params);
+            userStory.save(function(err){
+                next(err, userStory);
+            });
+        },
+
+        findAll: function(next){
+            _userStoryModel.find(function(err, userStories){
+                next(err, userStories);
+            });
+        },
+
+        updateStage: function(id, stage, next){
+            _userStoryModel.findOne({ _id : _objectId(id) }, function(err, userStory){
+                userStory.stage = stage;
+                userStory.save(function(err){
+                    next(err, userStory);
+                });
+            });
+        }
+
+    }
+}();

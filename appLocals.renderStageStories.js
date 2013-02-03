@@ -4,7 +4,7 @@ var dirname = __dirname;
 var _ = require('underscore');
 var $ = require('jquery');
 
-var appLocalsRenderStageStories = function(){
+module.exports = function(){
 
     var _compiledTemplate;
 
@@ -34,5 +34,3 @@ var appLocalsRenderStageStories = function(){
     }
 
 }();
-
-module.exports = appLocalsRenderStageStories;
